@@ -14,11 +14,11 @@
 - Suba os serviços
     - docker-compose up -d
 - Rode os comandos a partir do host
-    - docker exec -it -w /usr/src/app <app-name> composer install
-    - docker exec -it -w /usr/src/app <app-name> cp .env.example .env
-    - docker exec -it -w /usr/src/app <app-name> php artisan key:generate
+    - ```docker exec -it -w /usr/src/app <app-name>-app composer install```
+    - ```docker exec -it -w /usr/src/app <app-name>-app cp .env.example .env```
+    - ```docker exec -it -w /usr/src/app <app-name>-app php artisan key:generate```
     - etc.
 
 Crie aliases para a parte repetitiva do comando, por exemplo:
-- alias dr="docker exec -it -w /usr/src/app <app-name>"
-- dr php artisan migrate
+- ```alias dr="docker exec -it -w /usr/src/app <app-name>-app"```
+- ```dr php artisan migrate```
