@@ -17,6 +17,7 @@
     - docker exec -it -w /usr/src/app <app-name> cp .env.example .env
     - docker exec -it -w /usr/src/app <app-name> php artisan key:generate
     - etc.
+
 Crie aliases para a parte repetitiva do comando, por exemplo:
 - alias dr="docker exec -it -w /usr/src/app <app-name>"
 - dr php artisan migrate
