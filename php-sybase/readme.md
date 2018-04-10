@@ -6,8 +6,8 @@ Dockerfile para a construção de imagem PHP com suporte a Sybase/MSSQL e depend
 - [Docker CE](https://www.docker.com/community-edition#/download)
 
 ## Como usar a imagem
-- docker pull uspdev/php-sybase:0.8
-- docker run --rm -v ~/replicado:/usr/src/replicado -w /usr/src/replicado uspdev/php-sybase:0.8 php index.php
+- docker pull uspdev/php-sybase:0.9
+- docker run --rm -v ~/replicado:/usr/src/replicado -w /usr/src/replicado uspdev/php-sybase:0.9 php index.php
   - O comando acima é apenas um exemplo de uso
 
 ## Dockerfile
