@@ -1,5 +1,5 @@
 # Como usar o docker-compose
-- Copie o arquivo [docker-compose.yml](#) para o diretório do seu projeto
+- Copie o arquivo [docker-compose.yml](https://github.com/uspdev/dockerfiles/blob/master/docker-compose-laravel/docker-compose.yml) para o diretório do seu projeto
 - Substitua <app-name> pelo nome do seu projeto
 - Altere os dados de conexão no arquivo .env
 ```
