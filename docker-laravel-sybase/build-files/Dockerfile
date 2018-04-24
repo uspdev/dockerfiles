@@ -19,6 +19,7 @@ RUN apk --update add --no-cache \
         nodejs \
         supervisor \
         php7 \
+        php7-bcmath \
         php7-ctype \
         php7-curl \
         php7-dom \
