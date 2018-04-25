@@ -12,11 +12,11 @@ FROM alpine:3.7
 # que criar outro container apenas para o servidor
 # web, instalaremos os dois no mesmo container
 # e o supervisor cuidará dos processos
-RUN apk --update add --no-cache \
+RUN NODE_VERSION="v10.0.0" && apk --update add --no-cache \
         nginx \
         curl \
         freetds \
-        nodejs \
+        libpng-dev \
         supervisor \
         php7 \
         php7-bcmath \
@@ -39,13 +39,26 @@ RUN apk --update add --no-cache \
         php7-tokenizer \
         php7-xml \
         php7-xmlwriter \
-        php7-zip && \
+        php7-zip \
+        make \
+        python \
+        g++ \
+        gcc \
+        gcc-doc \
+        linux-headers && \
         # Limpando o cache das instalações
         # é sempre recomendável remover do
         # container tudo aquilo que não for mais
         # necessário após tudo configurado
         # assim o container fica menor
         rm -Rf /var/cache/apk/* && \
+        # Instalando nodejs
+        curl -L -O https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz && \
+        tar xf node-$NODE_VERSION.tar.gz && \
+        cd node-$NODE_VERSION && \
+        ./configure && \
+        make && \
+        make install && \
         # Instalando composer
         curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
         curl -sSL https://phar.phpunit.de/phpunit.phar -o phpunit.phar && \
