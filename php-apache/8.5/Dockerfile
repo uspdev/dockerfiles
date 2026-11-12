@@ -1,4 +1,4 @@
-FROM php8.5-apache
+FROM php:8.5-apache
 
 # packages
 RUN sed -i 's|main|main non-free|' /etc/apt/sources.list.d/debian.sources && apt-get update && apt-get install -y \
@@ -16,7 +16,8 @@ RUN sed -i 's|main|main non-free|' /etc/apt/sources.list.d/debian.sources && apt
     libjpeg-dev \
     libfreetype6-dev \
     curl \
-    memcached
+    memcached \
+    libmemcached-dev
 
 # cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -33,12 +34,14 @@ RUN docker-php-ext-install \
     zip \
     mbstring \
     bcmath \
-    pdo_dblib \
-    memcached
+    pdo_dblib
 
 # gd
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd
+
+# 3. Instale e habilite o memcached via PECL
+RUN pecl install memcached && docker-php-ext-enable memcached
 
 # php memory
 ENV PHP_MEMORY_LIMIT=512M
