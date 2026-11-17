@@ -16,7 +16,6 @@ RUN sed -i 's|main|main non-free|' /etc/apt/sources.list.d/debian.sources && apt
     libjpeg-dev \
     libfreetype6-dev \
     curl \
-    memcached \
     libmemcached-dev
 
 # cleanup
@@ -52,14 +51,6 @@ RUN { \
         echo "upload_max_filesize=${PHP_UPLOAD_LIMIT}"; \
         echo "post_max_size=${PHP_UPLOAD_LIMIT}"; \
     } > "${PHP_INI_DIR}/conf.d/upload.ini"
-
-# memcached de acordo com uspdev/cache
-ENV MEMCACHED=5M
-
-# atualizar ou adicionar a configuração
-RUN grep -qE "^I" /etc/memcached.conf \
-    && sed -i "s/^I.*/I = ${MEMCACHED}/" /etc/memcached.conf \
-    || echo "I = ${MEMCACHED}" >> /etc/memcached.conf
 
 # apache
 RUN a2enmod rewrite
